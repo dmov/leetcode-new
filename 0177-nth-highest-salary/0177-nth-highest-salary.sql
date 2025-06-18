@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$
 BEGIN
-  if N < 1 then return QUERY(select NULL::INT as salary);
-	else
+    if N < 1 then return QUERY(select NULL::INT as salary);
+    else
   		RETURN QUERY (
     		select distinct(e.salary) 
 			from employee e
