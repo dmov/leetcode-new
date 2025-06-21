@@ -1,5 +1,5 @@
 select * from (
-	select dd::date as "Day", rate as "Cancellation Rate" 
+	select dd::date as "Day", rr.rate as "Cancellation Rate" 
 	from generate_series(
 		'2013-10-01'::timestamp,
 		'2013-10-03'::timestamp,
@@ -21,6 +21,6 @@ select * from (
  			when (select * from total_count) = 0 then (select NULL::numeric as rate)
  			else (select round((select * from cancelation_count)/cast((select * from total_count) as numeric), 2) as rate)
 	 	 	end
-	)
+	) rr
 ) as rslt
 where rslt."Cancellation Rate" is not null
